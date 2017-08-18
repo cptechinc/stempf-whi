@@ -1,0 +1,46 @@
+/**
+ * Partial Search request sample (inbound)
+ *
+ * Section 10.1 in Sparklink documentation.
+ *
+ *
+ *
+ * transaction_type: REQUIRED. Transaction type (matches Nexpart endpoints)
+ *
+ * transaction_id:   REQUIRED. Unique number associated with this data transaction
+ *
+ * header: REQUIRED. Information necessary for communication between systems
+ *     account:   REQUIRED. Seller assigned account/customer number
+ *     pwd:       Optional. Password associated to a customer in CP Tech software
+ *     branch:    REQUIRED. Customer's primary internal branch number or location number
+ *     querytype: REQUIRED. Type of query ("part"/"desc")
+ *     querytext: REQUIRED. Contains search text (4 or more characters)
+ *     area:      Optional. Area number associated for the branch location (rare)
+ *     
+ *     routing: REQUIRED. Information needed to communicate routing details
+ *         supplier:       REQUIRED. Nexpart assigned 32 character unique ID for the seller
+ *         rid:            REQUIRED. Nexpart assigned unique ID for the customer
+ *         seller_id:      Optional. Seller's unique ID
+ *         buyer_id:       Optional. Buyer's unique ID
+ *         client_id:      Optional. Client's unique ID (identify additional information for each seller)
+ */
+
+{
+    "transaction_type":"stockcheck",
+    "transaction_id":121233334324,
+    "header":{  
+        "account":"99999",
+        "pwd":null,
+        "branch":"1",
+        "querytype":"part",
+        "querytext":"ABC12345",
+        "area":null,
+        "routing":{  
+            "supplier":"12345B6FBAA641234593ED1839212345",
+            "rid":"4124007",
+            "seller_id":null,
+            "buyer_id":null,
+            "client_id":null
+        }
+    }
+}

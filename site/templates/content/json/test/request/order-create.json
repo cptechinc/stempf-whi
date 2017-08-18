@@ -1,0 +1,186 @@
+{
+    "transaction_type":"order",
+    "transaction_id":121233334324,
+    "header":{
+        "account":"BECKER",
+        "pwd":null,
+        "type":null,
+        "fillflag":"backord",
+        "branch":"123456",
+        "wonumber":null,
+        "ponumber":null,
+        "delmethod":null,
+        "clerk_no":null,
+        "print_que":null,
+        "charge_core":false,
+        "invoice_type":null,
+        "paymenttype":null,
+        "delcost":null,
+        "tax":null,
+        "address_code":null,
+        "area":null,
+        "invoice":null,
+        "sales_tax_pct":null,
+        "sales_tax_state":null,
+        "shiptype":null,
+        "ordertotal":null,
+        "paymethod":null,
+        "paytransid":null,
+        "b2ctransid":null,
+        "misc_charges":null,
+        "total_disc_amt":null,
+        "total_rebate_amt":null,
+        "currencycode":null,
+        "insurancecost":null,
+        "shiprefid":null,
+        "shippingcarrier":null,
+        "ccv":null,
+        "sales_tax_amt":null,
+        "freighttotal":null,
+        "total_fet":null,
+        "vehid":null,
+        "servicewriterno":null,
+        "salesman":null,
+        "app_source_code":null,
+        "priority":null,
+        "routing":{
+            "supplier":"12345B6FBAA641234593ED1839212345",
+            "rid":"4124007",
+            "seller_id":null,
+            "buyer_id":null,
+            "client_id":null
+        },
+        "buyers":[
+            {
+                "key":"Customer Name",
+                "value":"John Doe"
+            },
+            {
+                "key":"Phone Number",
+                "value":"914-697-9400"
+            },
+            {
+                "key":"Alternate Phone Number",
+                "value":"914-697-9300"
+            },
+            {
+                "key":"Ship Cost",
+                "value":"2.45"
+            },
+            {
+                "key":"Ship UPC",
+                "value":"12334234234234"
+            }
+        ],
+        "promotions":[
+            {
+                "lineno":1,
+                "code":"OCTOBER15"
+            },
+            {
+                "lineno":2,
+                "code":"OCTOBER50"
+            }
+        ]
+    },
+    "shipto":{
+        "shiptocode":null,
+        "customer":"A1 Motor Company",
+        "address1":"International Drive",
+        "address2":null,
+        "city":"White Plains",
+        "state":"NY",
+        "zip":"10604",
+        "country":"US"
+    },
+    "billto":{
+        "billtocode":null,
+        "customer":"A1 Motor Company",
+        "address1":"International Drive",
+        "address2":null,
+        "city":"White Plains",
+        "state":"NY",
+        "zip":"10604",
+        "country":"US"
+    },
+    "parts":[
+        {
+            "linecode":"A48",
+            "partno":"8391",
+            "qtyreq":1,
+            "desc":"ELEMENT A / AIR FILTER",
+            "linedesc":null,
+            "list":36.45,
+            "cost":16.83,
+            "core":0.00,
+            "type":null,
+            "sales_tax_pct":null,
+            "shiptype":null,
+            "b2clinetransid":null,
+            "misc_charges":null,
+            "discprice":0.00,
+            "disccode":null,
+            "rebateprice":0.00,
+            "rebatecode":null,
+            "insurancecost":null,
+            "height":null,
+            "weight":null,
+            "length":null,
+            "width":null,
+            "ishazardous":"no",
+            "shippingcarrier":null,
+            "ccv":null,
+            "lineno":1,
+            "sales_tax_amt":null,
+            "freightcost":null,
+            "fet":null,
+            "comments":[
+                {
+                    "type":"vehicle",
+                    "text":"2006 HONDA TRUCK PILOT V6-3471cc 3.5L F/I Vin J35Z1 ID#37636-2HKYF185X6H541625"
+                }
+            ]
+        },
+        {
+            "linecode":"A14",
+            "partno":"8390",
+            "qtyreq":1,
+            "desc":"PAD KIT F / BRAKE LINING/FRICTION, FRONT",
+            "linedesc":null,
+            "list":100.72,
+            "cost":58.71,
+            "core":0.00,
+            "type":null,
+            "sales_tax_pct":null,
+            "shiptype":"Free",
+            "b2clinetransid":null,
+            "misc_charges":null,
+            "discprice":0.00,
+            "disccode":null,
+            "rebateprice":0.00,
+            "rebatecode":null,
+            "insurancecost":null,
+            "height":null,
+            "weight":null,
+            "length":null,
+            "width":null,
+            "ishazardous":"no",
+            "shippingcarrier":null,
+            "ccv":null,
+            "lineno":2,
+            "sales_tax_amt":1.00,
+            "freightcost":1.00,
+            "fet":1.00
+        }
+    ],
+    "comments":[
+        {
+            "type":"vehicle",
+            "text":"2006 HONDA TRUCK PILOT V6-3471cc 3.5L F/I Vin J35Z1 ID#37636-2HKYF185X6H541625"
+        },
+        {
+            "type":"general",
+            "text":"Please ship parts by 5:00PM"
+        }
+    ]
+}

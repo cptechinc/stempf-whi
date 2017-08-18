@@ -82,6 +82,7 @@ $config->chmodFile = '0644'; // permission for files created by ProcessWire
  * 
  */
 $config->timezone = 'America/Chicago';
+ setlocale(LC_ALL,'en_US.UTF-8');
 
 /**
  * Installer: Unix timestamp of date/time installed
@@ -98,4 +99,16 @@ $config->installed = 1502897848;
  * 
  */
 $config->httpHosts = array('216.17.51.112');
+
+
+$config->cgi = "WHI";
+$config->jsonfilepath = "/var/www/html/files/json/";
+$config->testjsonpath = "/var/www/html/dpluswhi/site/templates/content/json/test/";
+
+$config->pages = new Paths($rootURL);
+$config->pages->index = $config->urls->root;
+$config->pages->redir = $config->urls->root."redir/";
+$config->pages->post = $config->urls->root."post/";
+$config->pages->get = $config->urls->root."get/";
+
 

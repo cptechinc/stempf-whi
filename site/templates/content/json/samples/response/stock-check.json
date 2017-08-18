@@ -1,0 +1,338 @@
+/**
+ * Stock Check (Price & Availability) response sample (outbound)
+ *
+ * Section 4.2 in Sparklink documentation.
+ *
+ *
+ *
+ * transaction_type: REQUIRED. Transaction type (matches Nexpart endpoints)
+ *
+ * transaction_id: REQUIRED. Unique number associated with this data transaction
+ *
+ * header: REQUIRED. Information necessary for communication between systems
+ *     account:         REQUIRED. Seller assigned account/customer number
+ *     branch:          REQUIRED. Customer's primary internal branch number or location number
+ *     pwd:             Optional. Password associated to a customer in CP Tech software
+ *     Ordertype:       Optional. Type of order (typically "hotshot", "stock", "willcall")
+ *     discountcat:     Optional. Seller assigned discount category code (future use)
+ *     alternateflag:   REQUIRED. Indicates if alternate parts of requested parts are to returned in response ("yes"/"no")
+ *     delmethod:       Optional. Default delivery method of the buyer
+ *     errcode:         REQUIRED. Contains either "success" or "fail"
+ *     errmsg:          REQUIRED. Either "success" or appropriate error message
+ *     familyprflag:    Optional. Family pricing allows purchase of multiple parts from a predefined list ("0","1","2","3")
+ *     area:            Optional. Area number associated for the branch location (rare)
+ *     currency:        Optional. Current code for price (uses ISO-4217 codes)
+ *     
+ *     routing: REQUIRED. Information needed to communicate routing details
+ *         supplier:       REQUIRED. Nexpart assigned 32 character unique ID for the seller
+ *         rid:            REQUIRED. Nexpart assigned unique ID for the customer
+ *         seller_id:      Optional. Seller's unique ID
+ *         buyer_id:       Optional. Buyer's unique ID
+ *         client_id:      Optional. Client's unique ID (identify additional information for each seller)
+ *
+ *     promotions: Optional. List of promotion results passed back from seller (contains one or more "promotion" items)
+ *         totalsavings: REQUIRED. Total promotion savings
+ *         promotion:
+ *             linenum:            REQUIRED. Unique line number per promotion, must start from 1
+ *             name:               REQUIRED. Seller assigned name of promotion
+ *             code:               REQUIRED. Seller assigned code
+ *             type:               REQUIRED. Type of promotion ("manual"/"automatic")
+ *             savings:            REQUIRED. Savings dollar value
+ *             iconurl:            REQUIRED. Seller promotion icon URL path
+ *             iconurl_alttext:    REQUIRED. Seller promotion icon alternate text
+ *             detailsurl:         REQUIRED. Seller promotion details URL path
+ *             detailsurl_alttext: REQUIRED. Seller promotion details alternate text
+ *             shortdesc:          REQUIRED. Promotion details short description
+ *             longdesc:           REQUIRED. Promotion details long description
+ *             errcode:            REQUIRED. Either "success", "fail", or "unknown"
+ *             errmsg:             REQUIRED. Either "success" or appropriate error message
+ *
+ * parts: REQUIRED. List of parts and their details (contains one or more "part" items)
+ *     part:
+ *             linenum:            REQUIRED. Sequential number of an item
+ *             linecode:           REQUIRED. Seller system assigned code for each manufacturer or line
+ *             partno:             REQUIRED. Item or product number
+ *             qtyreq:             REQUIRED. Quantity requested for an item
+ *             desc:               REQUIRED. Description (may be blank if item is not found)
+ *             list:               REQUIRED. List price of an item
+ *             cost:               REQUIRED. Buyer's specific pricing
+ *             core:               REQUIRED. Core price of item
+ *             uom:                REQUIRED. Unit of measure
+ *             minqty:             REQUIRED. Minimum quantity that can be ordered (can be 0)
+
+ *             csqty:              Optional. Case quantity
+ *             qtyavail:           REQUIRED. Available quantity for first branch
+ *             alternateflag:      REQUIRED. Flag to indicated if alternate item available ("yes"/"no")
+ *             errcode:            REQUIRED. Error code ("success"/"invalid")
+ *             errmsg:             REQUIRED. Either "success" or appropriate error message
+ *             UPC:                Optional. Universal Product Code
+ *             familycode:         Optional. Family code of part
+ *             regular:            Optional. Seller promotion price (contains regular price)
+ *             yousave:            Optional. Contains "You Save" amount
+ *             instantsavings:     Optional. Manufacturer rebates/instant savings applied at checkout
+ *             iconurl:            Optional. Icon URL path, if any
+ *             iconurl_alttext:    Optional. Icon alternate text
+ *             detailsurl:         Optional. Promotion details URL path, if any
+ *             detailsurl_alttext: Optional. Promotion details alternate text
+ *             qtybreak:           Optional. Flag to indicate if quantity breaks are available ("yes"/"no")
+ *             parttype:           Optional. WHI catalog specific part type
+ *             mfgcode:            Optional. WHI catalog specific manufacturer code
+ *             partnoinput:        Optional. Original item or product number requested
+ *
+ *             altbranches: Optional. List of alternative locations with the part (contains one or more "altbranch" items)
+ *                 altbranch:
+ *                     albr:           REQUIRED. Seller's branch or location number
+ *                     altqty:         REQUIRED. Available quantity at branch
+ *                     list:           Optional. List price of item at branch (include if different)
+ *                     cost:           Optional. Buyer's specific pricing (include if different)
+ *                     core:           Optional. Core price (include if different)
+ *                     errcode:        Optional. Either "success" or "invalid"
+ *                     errmsg:         Optional. Either "success" or appropriate error message
+ *                     linecode:       REQUIRED. Seller system assigned code for manufacturer or line
+ *                     area:           Optional. Area number associated with branch (rare)
+ *                     albrname:       Optional. Alternate branch name
+ *                     regular:        Optional. Seller promotion price (contain regular price) (include if different)
+ *                     yousave:        Optional. Contains "You Save" amount (include if different)
+ *                     instantsavings: Optional. Manufacturer rebates/instant savings applied at checkout (include if different)
+ *
+ *             chooseparts: Optional. List of alternate items or products; same item by multiple manufacturers (one or more "choosepart" items)
+ *                 choosepart:
+ *                     linecode:   REQUIRED. Seller system assigned code for manufacturer or line
+ *                     partno:     REQUIRED. Item or product number
+ *                     desc:       REQUIRED. Description
+ *                     linedesc:   REQUIRED. Manufacturer's description
+ *                     familycode: Optional. Family code of part
+ *
+ *             comment: Optional. Free flow text to be displayed to buyer on Nexpart
+ *
+ *             qtybreakdetails: Optional. Additional quantity breaks pricing details (contains one or more "qtybreak" items)
+ *                 qtybreak:
+ *                     minqty: REQUIRED. Minimum quantity to order to qualify for break price
+ *                     cost:   REQUIRED. Quantity break cost price per unit
+ *
+ *             partexts: Optional. List of alternate item or product details (contains one or more "partext" items)
+ *                 partext:
+ *                     type:     REQUIRED. Type of the part to be an alternate ("alt")
+ *                     linecode: REQUIRED. Seller system assigned code for manufacturer or line
+ *                     partno:   REQUIRED. Item or product number
+ *                     qtyreq:   REQUIRED. Quantity requested for an item
+ *                     desc:     REQUIRED. Description
+ *                     list:     REQUIRED. List price of an item
+ *                     cost:     REQUIRED. Buyer's specific pricing
+ *                     core:     REQUIRED. Core price of item
+ *                     uom:      REQUIRED. Unit of measure
+ *                     minqty:   REQUIRED. Minimum quantity that can be ordered (can be 0)
+ *                     csqty:    Optional. Case quantity
+ *                     qtyavail: REQUIRED. Available quantity for first branch
+ *                     errcode:  REQUIRED. Error code ("success")
+ *                     errmsg:   REQUIRED. Must be "success"
+ *                     UPC:      Optional. Universal Product Code
+ *                     qtybreak: Optional. Flag to indicate if quantity breaks are available ("yes"/"no")
+ *
+ *                     altbranches: Optional. Same as parent "part/altbranches"
+ *                     qtybreakdetails: Optional. Same as parent "part/qtybreakdetails"
+ */
+
+{
+    "transaction_type":"stockcheck",
+    "transaction_id":121233334324,
+    "header":{
+        "account":"99999",
+        "branch":"1",
+        "pwd":null,
+        "Ordertype":null,
+        "discountcat":null,
+        "alternateflag":"no",
+        "delmethod":null,
+        "errcode":"success",
+        "errmsg":"success",
+        "familyprflag":null,
+        "area":null,
+        "currency":null,
+        "routing":{
+            "supplier":"12345B6FBAA641234593ED1839212345",
+            "rid":"4124007",
+            "seller_id":null,
+            "buyer_id":null,
+            "client_id":null
+        },
+        "promotions":{
+            "totalsavings":5.00,
+            "promos":[
+                {
+                    "linenum":1,
+                    "name":"October Promo",
+                    "code":"ADV75",
+                    "type":"manual",
+                    "savings":5.00,
+                    "iconurl":"http://www.abc.com/somegif.gif",
+                    "iconurl_alttext":"some hover text",
+                    "detailsurl":"http://www.promotionurl.com/promo456",
+                    "detailsurl_alttext":"some details text",
+                    "shortdesc":"$5.00 off all orders",
+                    "longdesc":"$5.00 off all orders in the month of October",
+                    "errcode":"success",
+                    "errmsg":"success"
+                },
+                {
+                    "linenum":2,
+                    "name":"October Promo 2",
+                    "code":"PROMO2",
+                    "type":"automatic",
+                    "savings":5.00,
+                    "iconurl":"http://www.abc.com/somegif.gif",
+                    "iconurl_alttext":"some hover text",
+                    "detailsurl":"http://www.promotionurl.com/promo456",
+                    "detailsurl_alttext":"some details text",
+                    "shortdesc":"$5.00 off all orders",
+                    "longdesc":"$5.00 off all orders in the month of October",
+                    "errcode":"success",
+                    "errmsg":"success"
+                }
+            ]
+        }
+    },
+    "parts":[
+        {//Found in seller's system and has an alternate item for sale AND contains additional items
+            "linenum":1,
+            "linecode":"ACD",
+            "partno":"PF2057",
+            "qtyreq":1,
+            "desc":"OIL FILTER",
+            "list":10.37,
+            "cost":4.80,
+            "core":0.00,
+            "uom":"EA",
+            "minqty":1,
+            "csqty":null,
+            "qtyavail":0,
+            "alternateflag":"yes",
+            "errcode":"success",
+            "errmsg":"success",
+            "UPC":null,
+            "familycode":null,
+            "regular":4.80,
+            "yousave":1.10,
+            "instantsavings":0.50,
+            "iconurl":null,
+            "iconurl_alttext":null,
+            "detailsurl":null,
+            "detailsurl_alttext":null,
+            "qtybreak":"no",
+            "parttype":null,
+            "mfgcode":null,
+            "partnoinput":"PF2057",
+            "altbranches":[
+                {
+                    "albr":"2",
+                    "altqty":125,
+                    "list":10.37,
+                    "cost":4.80,
+                    "core":0.00,
+                    "errcode":"success",
+                    "errmsg":"success",
+                    "linecode":"ACD",
+                    "area":null,
+                    "albrname":null,
+                    "regular":null,
+                    "yousave":null,
+                    "instantsavings":null
+                },
+                {
+                    "albr":"3",
+                    "altqty":348,
+                    "list":10.37,
+                    "cost":4.80,
+                    "core":0.00,
+                    "errcode":"success",
+                    "errmsg":"success",
+                    "linecode":"ACD",
+                    "area":null,
+                    "albrname":null,
+                    "regular":null,
+                    "yousave":null,
+                    "instantsavings":null
+                }
+            ],
+            "comment":"<span style=\"color:blue;\">This item is superseded by DG535</span>",
+            "qtybreakdetails":[
+                {
+                    "minqty":1,
+                    "cost":5.00
+                },
+                {
+                    "minqty":6,
+                    "cost":4.00
+                },
+                {
+                    "minqty":11,
+                    "cost":3.00
+                },
+                {
+                    "minqty":15,
+                    "cost":2.00
+                }
+            ]
+        },
+        {//Found in seller's system and has no alternate items
+            "linenum":2,
+            "linecode":"ACD",
+            "partno":"PF2057",
+            "qtyreq":1,
+            "desc":"OIL FILTER",
+            "list":10.37,
+            "cost":4.80,
+            "core":0.00,
+            "uom":"EA",
+            "minqty":1,
+            "csqty":null,
+            "qtyavail":0,
+            "alternateflag":"no",
+            "errcode":"success",
+            "errmsg":"success",
+            "UPC":null,
+            "familycode":null,
+            "regular":4.80,
+            "yousave":1.10,
+            "instantsavings":0.50,
+            "iconurl":null,
+            "iconurl_alttext":null,
+            "detailsurl":null,
+            "detailsurl_alttext":null,
+            "qtybreak":"no",
+            "parttype":null,
+            "mfgcode":null,
+            "partnoinput":"PF2057"
+        },
+        {//Part not found
+            "linenum":3,
+            "linecode":"A42",
+            "partno":"PF2057F",
+            "qtyreq":1,
+            "desc":null,
+            "list":null,
+            "cost":null,
+            "core":null,
+            "uom":null,
+            "minqty":0,
+            "csqty":null,
+            "qtyavail":0,
+            "alternateflag":"no",
+            "errcode":"invalid",
+            "errmsg":"We do not recognize this part as being in our catalog",
+            "UPC":null,
+            "familycode":null,
+            "regular":null,
+            "yousave":null,
+            "instantsavings":null,
+            "iconurl":null,
+            "iconurl_alttext":null,
+            "detailsurl":null,
+            "detailsurl_alttext":null,
+            "qtybreak":"no",
+            "parttype":null,
+            "mfgcode":null,
+            "partnoinput":"PF2057F"
+        }
+    ]
+}

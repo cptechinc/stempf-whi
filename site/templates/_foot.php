@@ -1,22 +1,14 @@
+		<br>
+        <footer>
+            <div class="container">
+                <p> Web Development by CPTech © 2015 --------- <?php echo session_id(); ?> --- </p>
+                <p class="visible-xs-inline-block"> XS </p> <p class="visible-sm-inline-block"> SM </p>
+                <p class="visible-md-inline-block"> MD </p> <p class="visible-lg-inline-block"> LG </p>
+            </div>
+        </footer>
 
-
-	</div><!--/#main-->
-
-	<!-- footer -->
-	<footer id='footer'>
-		<p>
-		Powered by <a href='http://processwire.com'>ProcessWire CMS</a>  &nbsp; / &nbsp; 
-		<?php 
-		if($user->isLoggedin()) {
-			// if user is logged in, show a logout link
-			echo "<a href='{$config->urls->admin}login/logout/'>Logout ($user->name)</a>";
-		} else {
-			// if user not logged in, show a login link
-			echo "<a href='{$config->urls->admin}'>Admin Login</a>";
-		}
-		?>
-		</p>
-	</footer>
-
-</body>
+        <?php foreach($config->scripts->unique() as $script) : ?>
+        	<script src="<?php echo $script; ?>"></script>
+        <?php endforeach; ?>
+    </body>
 </html>

@@ -9,90 +9,93 @@
  *
  */
 
-/**
- * Given a group of pages, render a simple <ul> navigation
- *
- * This is here to demonstrate an example of a simple shared function.
- * Usage is completely optional.
- *
- * @param PageArray $items
- *
- */
-function renderNav(PageArray $items) {
 
-	if(!$items->count()) return;
 
-	echo "<ul class='nav'>";
-
-	// cycle through all the items
-	foreach($items as $item) {
-
-		// render markup for each navigation item as an <li>
-		if($item->id == wire('page')->id) {
-			// if current item is the same as the page being viewed, add a "current" class to it
-			echo "<li class='current'>";
-		} else {
-			// otherwise just a regular list item
-			echo "<li>";
-		}
-
-		// markup for the link
-		echo "<a href='$item->url'>$item->title</a> ";
-
-		// if the item has summary text, include that too
-		if($item->summary) echo "<div class='summary'>$item->summary</div>";
-
-		// close the list item
-		echo "</li>";
+function writedplusfile($data, $filename) {
+	$file = '';
+	foreach ($data as $key => $value) {
+		$file .= trim($key) ."=".$value."\n";
 	}
+	$vard = "/usr/capsys/ecomm/" . $filename;
+	$handle = fopen($vard, "w") or die("cant open file");
 
-	echo "</ul>";
+	fwrite($handle, $file);
+	fclose($handle);
+
 }
 
-
-/**
- * Given a group of pages render a tree of navigation
- *
- * @param Page|PageArray $items Page to start the navigation tree from or pages to render
- * @param int $maxDepth How many levels of navigation below current should it go?
- *
- */
-function renderNavTree($items, $maxDepth = 3) {
-
-	// if we've been given just one item, convert it to an array of items
-	if($items instanceof Page) $items = array($items);
-
-	// if there aren't any items to output, exit now
-	if(!count($items)) return;
-
-	// $out is where we store the markup we are creating in this function
-	// start our <ul> markup
-	echo "<ul class='nav nav-tree'>";
-
-	// cycle through all the items
-	foreach($items as $item) {
-
-		// markup for the list item...
-		// if current item is the same as the page being viewed, add a "current" class to it
-		if($item->id == wire('page')->id) {
-			echo "<li class='current'>";
-		} else {
-			echo "<li>";
-		}
-
-		// markup for the link
-		echo "<a href='$item->url'>$item->title</a>";
-
-		// if the item has children and we're allowed to output tree navigation (maxDepth)
-		// then call this same function again for the item's children 
-		if($item->hasChildren() && $maxDepth) {
-			renderNavTree($item->children, $maxDepth-1);
-		}
-
-		// close the list item
-		echo "</li>";
+function json_format($json) {
+	if (!is_string($json)) {
+	if (phpversion() && phpversion() >= 5.4) {
+	  return json_encode($json, JSON_PRETTY_PRINT);
 	}
+		$json = json_encode($json);
+	}
+	$result      = '';
+	$pos         = 0;               // indentation level
+	$strLen      = strlen($json);
+	$indentStr   = "\t";
+	$newLine     = "\n";
+	$prevChar    = '';
+	$outOfQuotes = true;
+	for ($i = 0; $i < $strLen; $i++) {
+		// Speedup: copy blocks of input which don't matter re string detection and formatting.
+		$copyLen = strcspn($json, $outOfQuotes ? " \t\r\n\",:[{}]" : "\\\"", $i);
+		if ($copyLen >= 1) {
+		  $copyStr = substr($json, $i, $copyLen);
+		  // Also reset the tracker for escapes: we won't be hitting any right now
+		  // and the next round is the first time an 'escape' character can be seen again at the input.
+		  $prevChar = '';
+		  $result .= $copyStr;
+		  $i += $copyLen - 1;      // correct for the for(;;) loop
+		  continue;
+		}
 
-	// end our <ul> markup
-	echo "</ul>";
+		// Grab the next character in the string
+		$char = substr($json, $i, 1);
+
+		// Are we inside a quoted string encountering an escape sequence?
+		if (!$outOfQuotes && $prevChar === '\\') {
+		  // Add the escaped character to the result string and ignore it for the string enter/exit detection:
+		  $result .= $char;
+		  $prevChar = '';
+		  continue;
+		}
+		// Are we entering/exiting a quoted string?
+		if ($char === '"' && $prevChar !== '\\') {
+		  $outOfQuotes = !$outOfQuotes;
+		}
+		// If this character is the end of an element,
+		// output a new line and indent the next line
+		else if ($outOfQuotes && ($char === '}' || $char === ']')) {
+		  $result .= $newLine;
+		  $pos--;
+		  for ($j = 0; $j < $pos; $j++) {
+			$result .= $indentStr;
+		  }
+		}
+		// eat all non-essential whitespace in the input as we do our own here and it would only mess up our process
+		else if ($outOfQuotes && false !== strpos(" \t\r\n", $char)) {
+		  continue;
+		}
+		// Add the character to the result string
+		$result .= $char;
+		// always add a space after a field colon:
+		if ($outOfQuotes && $char === ':') {
+		  $result .= ' ';
+		}
+		// If the last character was the beginning of an element,
+		// output a new line and indent the next line
+		else if ($outOfQuotes && ($char === ',' || $char === '{' || $char === '[')) {
+			  $result .= $newLine;
+			  if ($char === '{' || $char === '[') {
+				$pos++;
+			  }
+			  for ($j = 0; $j < $pos; $j++) {
+				$result .= $indentStr;
+			  }
+		}
+		$prevChar = $char;
+	}
+	return $result;
 }

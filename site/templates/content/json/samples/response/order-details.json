@@ -1,0 +1,239 @@
+/**
+ * Order Status Detail response sample (outbound)
+ *
+ * Section 8.2 in Sparklink documentation.
+ *
+ *
+ *
+ * transaction_type: REQUIRED. Transaction type (matches Nexpart endpoints)
+ *
+ * transaction_id: REQUIRED. Unique number associated with this data transaction
+ *
+ * header: REQUIRED. Information necessary for communication between systems
+ *     account:  REQUIRED. Seller assigned account or customer number
+ *     pwd:      Optional. Password associated to a customer
+ *     type:     REQUIRED. Type of order history requested ("open"/"invoiced"/"returns")
+ *     branch:   REQUIRED. Location or branch expected to ship the order
+ *     errcode:  REQUIRED. Contains either "success" or "fail"
+ *     errmsg:   REQUIRED. Either "success" or appropriate error message
+ *     orderno:  Optional. Order number given to original order
+ *     invoice:  Optional. Invoice number to original order
+ *     ponumber: Optional. Purchase order number customer entered
+ *     wonumber: Optional. Work order or repair order number
+ *
+ *     routing: REQUIRED. Information necessary to communicate the routing information
+ *         supplier:  REQUIRED. Nexpart assigned 32 character unique ID for the seller
+ *         rid:       REQUIRED. Nexpart assigned unique ID for the customer
+ *         seller_id: Optional. Seller's unique ID
+ *         buyer_id:  Optional. Buyer's unique ID
+ *         client_id: Optional. Client's unique ID
+ *
+ * orderheaders: REQUIRED. Provides information regarding the orders like status, line items, dates (contains one or more "orderheader" items)
+ *     orderheader:
+ *         account:       REQUIRED. Seller assigned account or customer number    
+ *         pwd:           Optional. Password associated to a customer
+ *         status:        REQUIRED. Status of the order ("complete"/"picked"/"shipped"/"ordered"/"credhold"/"delivered")
+ *         lineitems:     REQUIRED. Contains the number of line items on this order
+ *         branch:        REQUIRED. Location or branch that shipped the items
+ *         orderno:       REQUIRED. Order number from seller system
+ *         invoice:       Optional. Invoice number
+ *         ponumber:      Optional. Purchase order number
+ *         dateentered:   REQUIRED. Order date when it was created ("YYYYMMDD")
+ *         dateinvoiced:  REQUIRED. Date when order was invoiced ("YYYYMMDD")
+ *         timeentered:   REQUIRED. Order time when it was created ("hh:mm:ss UTC(24h)")
+ *         timeinvoiced:  REQUIRED. Time when order was invoiced ("hh:mm:ss UTC(24h)")
+ *         shipmethod:    Optional. Shipping method used with order
+ *         shipadd1:      Optional. Shipping address line 1
+ *         shipadd2:      Optional. Shipping address line 2
+ *         shipadd3:      Optional. Shipping address line 3
+ *         shipadd4:      Optional. Shipping address line 4
+ *         terms:         Optional. Payment terms
+ *         type:          Optional. Type of this order ("credit memo"/"order")
+ *         total:         REQUIRED. Total cost of the order
+ *         coretotal:     REQUIRED. Core total of the order
+ *         comment:       Optional. Comments for the order
+ *         delcost:       Optional. Cost incurred to deliver the items
+ *         tax:           Optional. Amount of sales tax applicable to the order
+ *         fees:          Optional. Total fees applicable to the order
+ *         total_fet:     Optional. Amount of Federal excise tax applicable to the order
+ *         currency:      Optional. Currency code for price attributes (ISO-4217)
+ *         wonumber:      Optional. Work order number
+ *         errcode:       REQUIRED. Contains either "success" or "fail"
+ *         errmsg:        REQUIRED. Either "success" or appropriate error message
+ *
+ *         parts: REQUIRED. List of items included in the order (contains one or more "part" items)
+ *             part:
+ *                 linenum:     REQUIRED. Sequential number of an item being ordered
+ *                 linecode:    REQUIRED. Seller assigned code for each manufacturer or line
+ *                 partno:      REQUIRED. Item or product number
+ *                 description: REQUIRED. Description of item
+ *                 qtyord:      REQUIRED. Quantity ordered
+ *                 qtyship:     REQUIRED. Quantity delivered/shipped
+ *                 qtyback:     REQUIRED. Quantity back ordered
+ *                 list:        REQUIRED. List price of item
+ *                 cost:        REQUIRED. Buyer's specific pricing for item
+ *                 core:        REQUIRED. Core price of item
+ *                 fet:         Optional. Federal excise tax
+ *                 fee:         Optional. Disposable fee, if applicable
+ *                 tax:         Optional. Sales tax or other applicable tax
+ *                 UPC:         Optional. Universal product code
+ *
+ *         buyers: Optional. Describe entity who has requested items (contains one or more "buyer" items)
+ *             buyer:
+ *                 key:   REQUIRED. Buyer's customer attribute name
+ *                 value: REQUIRED. Buyer's customer attribute value
+ *
+ *         promotions: Optional. List of promotions applied to the order (contains one or more "promotion" items)
+ *             totalsavings: REQUIRED. Total promotion savings
+ *             promotion:
+ *                 linenum:   REQUIRED. Unique line number per promotion, lowest gets highest priority, must start from 1
+ *                 name:      REQUIRED. Promotion name
+ *                 code:      REQUIRED. Promotion code
+ *                 shortdesc: REQUIRED. Short description
+ *                 longdesc:  REQUIRED. Long description
+ *                 type:      Optional. Promotion type ("manual"/"automatic")
+ *                 savings:   REQUIRED. Savings dollar value
+ *                 errcode:   REQUIRED. Contains either "success", "fail", or "unknown"
+ *                 errmsg:    REQUIRED. Either "success" or appropriate error message
+ */
+
+{
+    "transaction_type":"orderstatusdetail",
+    "transaction_id":121233334324,
+    "header":{
+        "account":"99999",
+        "pwd":null,
+        "type":"open",
+        "branch":"1",
+        "reqrecs":15,
+        "errcode":"success",
+        "errmsg":"success",
+        "orderno":null,
+        "invoice":null,
+        "ponumber":null,
+        "routing":{
+            "supplier":"12345B6FBAA641234593ED1839212345",
+            "rid":"4124007",
+            "seller_id":null,
+            "buyer_id":null,
+            "client_id":null
+        }
+    },
+    "orderheaders":[
+        {
+            "account":"99999",
+            "pwd":null,
+            "status":"ordered",
+            "lineitems":2,
+            "branch":"1",
+            "orderno":"M1117543",
+            "invoice":null,
+            "ponumber":null,
+            "dateentered":"20100415",
+            "dateinvoiced":"20100417",
+            "timeentered":"17:34:59 UTC",
+            "timeinvoiced":"14:30:10 UTC",
+            "shipmethod":null,
+            "shipadd1":null,
+            "shipadd2":null,
+            "shipadd3":null,
+            "shipadd4":null,
+            "terms":null,
+            "type":null,
+            "total":59.98,
+            "coretotal":0.00,
+            "comment":null,
+            "delcost":null,
+            "tax":null,
+            "fees":null,
+            "total_fet":null,
+            "currency":"USD",
+            "wonumber":null,
+            "errcode":"success",
+            "errmsg":"success",
+            "parts":[
+                {
+                    "linenum":1,
+                    "linecode":"118",
+                    "partno":"AXCD1161",
+                    "description":"CERAMIC PADS (AEF)",
+                    "qtyord":1,
+                    "qtyship":1,
+                    "qtyback":0,
+                    "list":28.10,
+                    "cost":17.42,
+                    "core":0.00,
+                    "fet":null,
+                    "fee":null,
+                    "tax":null,
+                    "UPC":null
+                },
+                {
+                    "linenum":2,
+                    "linecode":"461",
+                    "partno":"80255",
+                    "description":"ALT-DOMESTIC (USA)",
+                    "qtyord":1,
+                    "qtyship":1,
+                    "qtyback":0,
+                    "list":109.50,
+                    "cost":70.08,
+                    "core":66.00,
+                    "fet":null,
+                    "fee":null,
+                    "tax":null,
+                    "UPC":null
+                }
+            ],
+            "buyers":[
+                {
+                    "key":"Customer Name",
+                    "value":"John Doe"
+                },
+                {
+                    "key":"Phone Number",
+                    "value":"914-697-9400"
+                },
+                {
+                    "key":"Alternate Phone Number",
+                    "value":"914-697-9300"
+                },
+                {
+                    "key":"Ship Cost",
+                    "value":"2.45"
+                },
+                {
+                    "key":"Ship UPC",
+                    "value":"12334234234234"
+                }
+            ],
+            "promotions":{
+                "totalsavings":25.00,
+                "promos":[
+                    {
+                        "linenum":1,
+                        "name":"October promo",
+                        "code":"OCTOBER15",
+                        "shortdesc":"15% off",
+                        "longdesc":"15% off all items in the month of October",
+                        "type":"manual",
+                        "savings":5.00,
+                        "errcode":"success",
+                        "errmsg":"success"
+                    },
+                    {
+                        "linenum":2,
+                        "name":"Automatic promo",
+                        "code":"AUTOPROMO",
+                        "shortdesc":"15% off",
+                        "longdesc":"15% off all items in the month of October",
+                        "type":"automatic",
+                        "savings":5.00,
+                        "errcode":"success",
+                        "errmsg":"success"
+                    }
+                ]
+            }
+        }
+    ]
+}

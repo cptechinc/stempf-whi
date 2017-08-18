@@ -1,0 +1,19 @@
+{
+    "transaction_type":"partsearch",
+    "transaction_id":121233334324,
+    "header":{  
+        "account":"BECKER",
+        "pwd":null,
+        "branch":"123456",
+        "querytype":"part",
+        "querytext":"0195",
+        "area":null,
+        "routing":{  
+            "supplier":"12345B6FBAA641234593ED1839212345",
+            "rid":"4124007",
+            "seller_id":null,
+            "buyer_id":null,
+            "client_id":null
+        }
+    }
+}

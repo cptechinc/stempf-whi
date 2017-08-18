@@ -1,0 +1,20 @@
+{
+	"transaction_type": "accountstatus",
+	"transaction_id": 121233334324,
+	"header": {
+		"account": "BECKER",
+		"branch": "123456",
+		"pwd": null,
+		"clerk_no": null,
+		"address_code": null,
+		"popular_part": null,
+		"area": null
+	},
+	"routing": {
+		"supplier": "123456B6FBAA64123593ED1839212345",
+		"rid": "4124007",
+		"seller_id": null,
+		"buyer_id": null,
+		"client_id": null
+	}
+}

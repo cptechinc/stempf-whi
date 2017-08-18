@@ -1,0 +1,140 @@
+{
+    "transaction_type":"orderstatusdetail",
+    "transaction_id":121233334324,
+    "header":{
+        "account":"99999",
+        "pwd":null,
+        "type":"open",
+        "branch":"1",
+        "reqrecs":15,
+        "errcode":"success",
+        "errmsg":"success",
+        "orderno":null,
+        "invoice":null,
+        "ponumber":null,
+        "routing":{
+            "supplier":"12345B6FBAA641234593ED1839212345",
+            "rid":"4124007",
+            "seller_id":null,
+            "buyer_id":null,
+            "client_id":null
+        }
+    },
+    "orderheaders":[
+        {
+            "account":"99999",
+            "pwd":null,
+            "status":"ordered",
+            "lineitems":2,
+            "branch":"1",
+            "orderno":"M1117543",
+            "invoice":null,
+            "ponumber":null,
+            "dateentered":"20100415",
+            "dateinvoiced":"20100417",
+            "timeentered":"17:34:59 UTC",
+            "timeinvoiced":"14:30:10 UTC",
+            "shipmethod":null,
+            "shipadd1":null,
+            "shipadd2":null,
+            "shipadd3":null,
+            "shipadd4":null,
+            "terms":null,
+            "type":null,
+            "total":59.98,
+            "coretotal":0.00,
+            "comment":null,
+            "delcost":null,
+            "tax":null,
+            "fees":null,
+            "total_fet":null,
+            "currency":"USD",
+            "wonumber":null,
+            "errcode":"success",
+            "errmsg":"success",
+            "parts":[
+                {
+                    "linenum":1,
+                    "linecode":"118",
+                    "partno":"AXCD1161",
+                    "description":"CERAMIC PADS (AEF)",
+                    "qtyord":1,
+                    "qtyship":1,
+                    "qtyback":0,
+                    "list":28.10,
+                    "cost":17.42,
+                    "core":0.00,
+                    "fet":null,
+                    "fee":null,
+                    "tax":null,
+                    "UPC":null
+                },
+                {
+                    "linenum":2,
+                    "linecode":"461",
+                    "partno":"80255",
+                    "description":"ALT-DOMESTIC (USA)",
+                    "qtyord":1,
+                    "qtyship":1,
+                    "qtyback":0,
+                    "list":109.50,
+                    "cost":70.08,
+                    "core":66.00,
+                    "fet":null,
+                    "fee":null,
+                    "tax":null,
+                    "UPC":null
+                }
+            ],
+            "buyers":[
+                {
+                    "key":"Customer Name",
+                    "value":"John Doe"
+                },
+                {
+                    "key":"Phone Number",
+                    "value":"914-697-9400"
+                },
+                {
+                    "key":"Alternate Phone Number",
+                    "value":"914-697-9300"
+                },
+                {
+                    "key":"Ship Cost",
+                    "value":"2.45"
+                },
+                {
+                    "key":"Ship UPC",
+                    "value":"12334234234234"
+                }
+            ],
+            "promotions":{
+                "totalsavings":25.00,
+                "promos":[
+                    {
+                        "linenum":1,
+                        "name":"October promo",
+                        "code":"OCTOBER15",
+                        "shortdesc":"15% off",
+                        "longdesc":"15% off all items in the month of October",
+                        "type":"manual",
+                        "savings":5.00,
+                        "errcode":"success",
+                        "errmsg":"success"
+                    },
+                    {
+                        "linenum":2,
+                        "name":"Automatic promo",
+                        "code":"AUTOPROMO",
+                        "shortdesc":"15% off",
+                        "longdesc":"15% off all items in the month of October",
+                        "type":"automatic",
+                        "savings":5.00,
+                        "errcode":"success",
+                        "errmsg":"success"
+                    }
+                ]
+            }
+        }
+    ]
+}

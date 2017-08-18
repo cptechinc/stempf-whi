@@ -1,0 +1,97 @@
+{
+    "transaction_type":"stockcheck",
+    "transaction_id":121233334324,
+    "header":{  
+        "account":"BECKER",
+        "branch":"123456",
+        "pwd":null,
+        "Ordertype":null,
+        "discountcat":null,
+        "alternateflag":"no",
+        "data_source":"catalog",
+        "delmethod":null,
+        "clerk_no":null,
+        "area":null,
+        "address_code":null,
+        "familyprflag":null,
+        "currency":null,
+        "orderreview":null,
+        "app_source_code":null,
+        "qtybreak":null,
+        "routing":{  
+            "supplier":"12345B6FBAA641234593ED1839212345",
+            "rid":"4124007",
+            "seller_id":null,
+            "buyer_id":null,
+            "client_id":null,
+            "mvp_dealer_id":null,
+            "mvp_account_no":null,
+            "usertype":null
+        },
+        "altbranch":{
+            "albr":"002",
+            "seller_id":null,
+            "client_id":null,
+            "area":null
+        },
+        "shipto":{
+            "shiptocode":null,
+            "customer":"A1 Motor Company",
+            "address1":"International Drive",
+            "address2":null,
+            "city":"White Plains",
+            "state":"NY",
+            "zip":"10604",
+            "country":"US"
+        },
+        "billto":{
+            "billtocode":null,
+            "customer":"A1 Motor Company",
+            "address1":"International Drive",
+            "address2":null,
+            "city":"White Plains",
+            "state":"NY",
+            "zip":"10604",
+            "country":"US"
+        },
+        "promotions":[
+            {
+                "linenum":1,
+                "code":"OCTOBER15"
+            },
+            {
+                "linenum":2,
+                "code":"PROMOCODE"
+            }
+        ]
+    },
+    "parts":[
+        {
+            "linenum":1,
+            "linecode":"20",
+            "partno":"PF2057",
+            "qtyreq":1,
+            "familycode":null,
+            "parttype":null,
+            "mfgcode":null
+        },
+        {
+            "linenum":2,
+            "linecode":"20",
+            "partno":"PF57",
+            "qtyreq":1,
+            "familycode":null,
+            "parttype":null,
+            "mfgcode":null
+        },
+		{
+            "linenum":3,
+            "linecode":"20",
+            "partno":"8391",
+            "qtyreq":1,
+            "familycode":null,
+            "parttype":null,
+            "mfgcode":null
+        }
+    ]
+}

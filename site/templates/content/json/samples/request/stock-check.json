@@ -1,0 +1,165 @@
+/**
+ * Stock Check (Price & Availability) request sample (inbound)
+ *
+ * Section 4.1 in Sparklink documentation.
+ *
+ * transaction_type: REQUIRED. Transaction type (matches Nexpart endpoints)
+ * transaction_id: REQUIRED. Unique number associated with this data transaction
+ * header: REQUIRED. Information necessary for communication between systems
+ *     account:         REQUIRED. Seller assigned account/customer number
+ *     branch:          REQUIRED. Customer's primary internal branch number or location number
+ *     pwd:             Optional. Password associated to a customer in CP Tech software
+ *     Ordertype:       Optional. Type of order (typically "hotshot", "stock", "willcall")
+ *     discountcat:     Optional. Seller assigned discount category code (future use)
+ *     alternateflag:   REQUIRED. Indicates if alternate parts of requested parts are to returned in response ("yes"/"no")
+ *     data_source:     REQUIRED. Where parts lookups are originated from ("catalog"/"manual")
+ *     delmethod:       Optional. Default delivery method of the buyer
+ *     clerk_no:        Optional. Employee number that can authorize the transaction
+ *     area:            Optional. Area number associated for the branch location (rare)
+ *     address_code:    Optional. Another ship to code value
+ *     familyprflag:    Optional. Family pricing allows purchase of multiple parts from a predefined list ("0","1","2","3")
+ *     currency:        Optional. Current code for price (uses ISO-4217 codes)
+ *     orderreview:     Optional. Determines if stockcheck is from orderreview screen ("YES"/"NO")
+ *     app_source_code: Optional. Application source code sent to sellers interface from Nexpart (rare)
+ *     qtybreak:        Optional. Pricing discounts by quantity sold requested in response ("summary"/"detail")
+ *     
+ *     routing: REQUIRED. Information needed to communicate routing details
+ *         supplier:       REQUIRED. Nexpart assigned 32 character unique ID for the seller
+ *         rid:            REQUIRED. Nexpart assigned unique ID for the customer
+ *         seller_id:      Optional. Seller's unique ID
+ *         buyer_id:       Optional. Buyer's unique ID
+ *         client_id:      Optional. Client's unique ID (identify additional information for each seller)
+ *         mvp_dealer_id:  Optional. My Volvo dealer id (only Volvo dealers)
+ *         mvp_account_no: Optional. My Volvo account number (only Volvo dealers)
+ *         usertype:       Optional. DST custom usertype (DST systems only)
+ *
+ *     altbranch: REQUIRED. Information needed to check inventory for additional branches/locations
+ *         albr:      REQUIRED. Seller's branch or location number
+ *         seller_id: Optional. Seller's unique ID
+ *         client_id: Optional. Client's unique ID
+ *         area:      Optional. Area number associated for the branch location (rare)
+ *
+ *     shipto: Optional. Describe entity to ship/deliver items
+ *         shiptocode: Optional. Ship-to code used to override the code in seller's system (rare)
+ *         customer:   REQUIRED. Buyer assigned name to ship items
+ *         address1:   REQUIRED. Address line 1
+ *         address2:   Optional. Address line 2
+ *         city:       REQUIRED. City
+ *         state:      REQUIRED. State
+ *         zip:        REQUIRED. ZIP or other postal code
+ *         country:    REQUIRED. ISO 3166-1 two-letter code for country
+ *
+ *     billto: Optional. Describe the entiry responsible for paying the invoice
+ *         billtocode: Optional. Bill-to code used to override the code in seller's system (rare)
+ *         customer:   REQUIRED. Buyer's name responsible for paying
+ *         address1:   REQUIRED. Address line 1
+ *         address2:   Optional. Address line 2
+ *         city:       REQUIRED. City
+ *         state:      REQUIRED. State
+ *         zip:        REQUIRED. ZIP or other postal code
+ *         country:    REQUIRED. ISO 3166-1 two-letter code for country
+ *
+ *     promotions: Optional. User entered list of promotions on order review page (contains one or more "promotion" items)
+ *         promotion:
+ *             linenum: REQUIRED. Unique line number per promotion, must start from 1
+ *             code:    REQUIRED. Seller assigned code for a promotion
+ *
+ * parts: REQUIRED. Items/products ordered (request must contain one or more "part" items)
+ *     part:
+ *         linenum:    REQUIRED. Sequential number of an item being checked
+ *         linecode:   REQUIRED. Seller assigned code for each manufacturer or line of a requested item (may be empty)
+ *         partno:     REQUIRED. Item or product number requested
+ *         qtyreq:     REQUIRED. Quantity being requested for item
+ *         familycode: Optional. Family code of the part number (only for DMS systems)
+ *         parttype:   Optional. WHI catalog specific part type
+ *         mfgcode:    Optional. WHI catelog specific part manufacturer code
+ */
+
+{
+    "transaction_type":"stockcheck",
+    "transaction_id":121233334324,
+    "header":{  
+        "account":"99999",
+        "branch":"1",
+        "pwd":null,
+        "Ordertype":null,
+        "discountcat":null,
+        "alternateflag":"no",
+        "data_source":"catalog",
+        "delmethod":null,
+        "clerk_no":null,
+        "area":null,
+        "address_code":null,
+        "familyprflag":null,
+        "currency":null,
+        "orderreview":null,
+        "app_source_code":null,
+        "qtybreak":null,
+        "routing":{  
+            "supplier":"12345B6FBAA641234593ED1839212345",
+            "rid":"4124007",
+            "seller_id":null,
+            "buyer_id":null,
+            "client_id":null,
+            "mvp_dealer_id":null,
+            "mvp_account_no":null,
+            "usertype":null
+        },
+        "altbranch":{
+            "albr":"002",
+            "seller_id":null,
+            "client_id":null,
+            "area":null
+        },
+        "shipto":{
+            "shiptocode":null,
+            "customer":"A1 Motor Company",
+            "address1":"International Drive",
+            "address2":null,
+            "city":"White Plains",
+            "state":"NY",
+            "zip":"10604",
+            "country":"US"
+        },
+        "billto":{
+            "billtocode":null,
+            "customer":"A1 Motor Company",
+            "address1":"International Drive",
+            "address2":null,
+            "city":"White Plains",
+            "state":"NY",
+            "zip":"10604",
+            "country":"US"
+        },
+        "promotions":[
+            {
+                "linenum":1,
+                "code":"OCTOBER15"
+            },
+            {
+                "linenum":2,
+                "code":"PROMOCODE"
+            }
+        ]
+    },
+    "parts":[
+        {
+            "linenum":1,
+            "linecode":"",
+            "partno":"PF2057",
+            "qtyreq":1,
+            "familycode":null,
+            "parttype":null,
+            "mfgcode":null
+        },
+        {
+            "linenum":2,
+            "linecode":"",
+            "partno":"PF57",
+            "qtyreq":1,
+            "familycode":null,
+            "parttype":null,
+            "mfgcode":null
+        }
+    ]
+}

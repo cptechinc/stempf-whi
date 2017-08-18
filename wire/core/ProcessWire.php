@@ -855,6 +855,7 @@ class ProcessWire extends Wire {
 			'files' => "$assetsDir/files/",
 			'tmp' => "$assetsDir/tmp/",
 			'templates' => "$siteDir/templates/",
+			'content' => "$siteDir/templates/content/",
 			'fieldTemplates' => "$siteDir/templates/fields/",
 			'adminTemplates' => "$wireDir/$adminTplDir/",
 		), true);

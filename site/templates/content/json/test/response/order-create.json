@@ -1,0 +1,121 @@
+{
+    "transaction_type":"order",
+    "transaction_id":121233334324,
+    "header":{
+        "account":"99999",
+        "pwd":null,
+        "branch":"1",
+        "ponumber":null,
+        "wonumber":null,
+        "invoice":null,
+        "delmethod":null,
+        "state":"ordered",
+        "orderno":"1149212",
+        "orderdate":"2010-04-20 02:30:50 EST",
+        "deldesc":null,
+        "delcost":null,
+        "tax":null,
+        "tpstax":null,
+        "tgstax":null,
+        "paymenttype":null,
+        "comment":null,
+        "errcode":"success",
+        "errmsg":"success",
+        "clerk_no":null,
+        "print_que":null,
+        "charge_core":null,
+        "total_fet":null,
+        "routing":{
+            "supplier":"12345B6FBAA641234593ED1839212345",
+            "rid":"4124007",
+            "seller_id":null,
+            "buyer_id":null,
+            "client_id":null
+        },
+        "promotions":{
+            "totalsavings":25.00,
+            "promos":[
+                {
+                    "lineno":1,
+                    "name":"October promo",
+                    "code":"OCTOBER15",
+                    "type":"manual",
+                    "savings":null,
+                    "detailsurl":"http://www.promotionalurl.com/promo456",
+                    "details_alttext":"alternate text",
+                    "shortdesc":"15% off",
+                    "longdesc":"Receive 15% off all orders in the month of October",
+                    "errcode":"success",
+                    "errmsg":"success"
+                },
+                {
+                    "lineno":2,
+                    "name":"Automatic promo",
+                    "code":"AUTO",
+                    "type":"automatic",
+                    "savings":null,
+                    "detailsurl":"http://www.promotionalurl.com/promo456",
+                    "details_alttext":"alternate text",
+                    "shortdesc":"15% off",
+                    "longdesc":"Receive 15% off all orders in the month of October",
+                    "errcode":"success",
+                    "errmsg":"success"
+                }
+            ]
+        }
+    },
+    "fees":[
+        {
+            "fee_desc":"Fuel Surcharge",
+            "fee_amount":5.00
+        },
+        {
+            "fee_desc":"Handling Fee",
+            "fee_amount":3.50
+        }
+    ],
+    "parts":[
+        {
+            "linecode":"A48",
+            "partno":"A2964C",
+            "qtyreq":1,
+            "list":36.45,
+            "cost":16.83,
+            "core":0.00,
+            "qtysup":1,
+            "fee":null,
+            "errcode":"success",
+            "errmsg":"success",
+            "lineno":1,
+            "fet":null
+        },
+        {
+            "linecode":"ACD",
+            "partno":"17D943C",
+            "qtyreq":3,
+            "list":100.72,
+            "cost":58.71,
+            "core":0.00,
+            "qtysup":2,
+            "fee":null,
+            "errcode":"fail",
+            "errmsg":"This part short by 1 and backordered call to cancel",
+            "lineno":2,
+            "fet":null
+        },
+        {
+            "linecode":"ACD",
+            "partno":"17D943C",
+            "qtyreq":3,
+            "list":null,
+            "cost":null,
+            "core":null,
+            "qtysup":0,
+            "fee":null,
+            "errcode":"fail",
+            "errmsg":"The part is no longer valid in parts catalog.",
+            "lineno":3,
+            "fet":null
+        }
+    ]
+}

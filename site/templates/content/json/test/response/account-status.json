@@ -1,0 +1,65 @@
+{
+    "transaction_type":"accountstatus",
+    "transaction_id":"bevtest1",
+    "header":{
+        "account":"3050",
+        "branch":"10",
+        "errcode":"success",
+        "errmsg":"success",
+        "pwd":" ",
+        "clerk_no":" ",
+        "area":" "
+    },
+    "status":{
+        "name":"ACCURATE PRESS, INC. (WOW)",
+        "credstatus":"normal",
+        "poreq":"no",
+        "discountcat":" ",
+        "homeurl":" ",
+        "email":"bev@cptechinc.com"
+    },
+    "branches":[
+        {
+            "seqno":"10",
+            "branchid":"10",
+            "name":"ACCURATE PRESS, INC.",
+            "address1":"1561 OLD HIGHWAY 8",
+            "address2":"C/O SHIP-TO #10",
+            "city":"NEW BRIGHTON",
+            "state":"MN",
+            "zip":"55112",
+            "country":"US",
+            "phone":"952-888-1888 X 115",
+            "fax":"952-888-1813",
+            "seller_id":" ",
+            "viewonly":"no",
+            "area":" "
+        }
+    ],
+    "billtoparty":[
+        {
+            "code":" ",
+            "name":"ACCURATE PRESS, INC. (WOW)",
+            "address1":"1561 Old HIGHWAY 8",
+            "address2":"",
+            "city":"NEW BRIGHTON",
+            "state":"MN",
+            "zip":"55111",
+            "country":"US"
+        }
+    ],
+    "paymenttypes":[
+        {
+            "seqno":"1",
+            "typeid":"CASH",
+            "typedesc":"Cash Terms"
+        }
+    ],
+    "deliverymethods":[
+        {
+            "seqno":"1",
+            "deliverycode":"UPSC",
+            "deliverydesc":"UPS COMMERCIAL"
+        }
+    ]
+}

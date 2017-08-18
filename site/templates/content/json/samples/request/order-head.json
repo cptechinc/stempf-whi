@@ -1,0 +1,40 @@
+/* 
+* header: REQUIRED. Information necessary for communication between systems
+ *     account:  REQUIRED. Seller assigned account or customer number
+ *     pwd:      Optional. Password associated to a customer
+ *     type:     REQUIRED. Type of order history requested ("open"/"invoiced"/"returns")
+ *     branch:   REQUIRED. Location or branch expected to ship the order
+ *     reqrecs:  REQUIRED. Number of order records from seller's system to be returned (can limit response)
+ *     orderno:  Optional. Order number given to original order
+ *     invoice:  Optional. Invoice number to original order
+ *     ponumber: Optional. Purchase order number customer entered
+ *
+ *     routing: REQUIRED. Information necessary to communicate the routing information
+ *         supplier:  REQUIRED. Nexpart assigned 32 character unique ID for the seller
+ *         rid:       REQUIRED. Nexpart assigned unique ID for the customer
+ *         seller_id: Optional. Seller's unique ID
+ *         buyer_id:  Optional. Buyer's unique ID
+ *         client_id: Optional. Client's unique ID
+ */
+
+{
+    "transaction_type":"orderstatus",
+    "transaction_id":121233334324,
+    "header":{
+        "account":"99999",
+        "pwd":null,
+        "type":"open",
+        "branch":"1",
+        "reqrecs":15,
+        "orderno":null,
+        "invoice":null,
+        "ponumber":null,
+        "routing":{
+            "supplier":"12345B6FBAA641234593ED1839212345",
+            "rid":"4124007",
+            "seller_id":null,
+            "buyer_id":null,
+            "client_id":null
+        }
+    }
+}

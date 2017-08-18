@@ -1,0 +1,161 @@
+/**
+ * Order Status Summary response sample (outbound)
+ *
+ * Section 7.2 in Sparklink documentation.
+ *
+ *
+ *
+ * transaction_type: REQUIRED. Transaction type (matches Nexpart endpoints)
+ *
+ * transaction_id: REQUIRED. Unique number associated with this data transaction
+ *
+ * header: REQUIRED. Information necessary for communication between systems
+ *     account:  REQUIRED. Seller assigned account or customer number
+ *     pwd:      Optional. Password associated to a customer
+ *     type:     REQUIRED. Type of order history requested ("open"/"invoiced"/"returns")
+ *     branch:   REQUIRED. Location or branch expected to ship the order
+ *     reqrecs:  REQUIRED. Number of order records from seller's system to be returned (can limit response)
+ *     errcode:  REQUIRED. Contains either "success" or "fail"
+ *     errmsg:   REQUIRED. Either "success" or appropriate error message
+ *     orderno:  Optional. Order number given to original order
+ *     invoice:  Optional. Invoice number to original order
+ *     ponumber: Optional. Purchase order number customer entered
+ *
+ *     routing: REQUIRED. Information necessary to communicate the routing information
+ *         supplier:  REQUIRED. Nexpart assigned 32 character unique ID for the seller
+ *         rid:       REQUIRED. Nexpart assigned unique ID for the customer
+ *         seller_id: Optional. Seller's unique ID
+ *         buyer_id:  Optional. Buyer's unique ID
+ *         client_id: Optional. Client's unique ID
+ *
+ * orderheaders: REQUIRED. Provides information regarding the orders like status, line items, dates (contains one or more "orderheader" items)
+ *     orderheader:
+ *         status:            REQUIRED. Status of the order ("complete"/"picked"/"shipped"/"ordered"/"credhold"/"delivered")
+ *         lineitems:         REQUIRED. Contains the number of line items on this order
+ *         branch:            REQUIRED. Location or branch that shipped the items
+ *         orderno:           REQUIRED. Order number from seller system
+ *         invoice:           Optional. Invoice number
+ *         ponumber:          Optional. Purchase order number
+ *         dateentered:       REQUIRED. Order date when it was created ("YYYYMMDD")
+ *         dateinvoiced:      REQUIRED. Date when order was invoiced ("YYYYMMDD")
+ *         timeentered:       REQUIRED. Order time when it was created ("hh:mm:ss UTC(24h)")
+ *         timeinvoiced:      REQUIRED. Time when order was invoiced ("hh:mm:ss UTC(24h)")
+ *         shipmethod:        Optional. Shipping method used with order
+ *         shipadd1:          Optional. Shipping address line 1
+ *         shipadd2:          Optional. Shipping address line 2
+ *         shipadd3:          Optional. Shipping address line 3
+ *         shipadd4:          Optional. Shipping address line 4
+ *         terms:             Optional. Payment terms
+ *         type:              Optional. Type of this order ("credit memo"/"order")
+ *         total:             REQUIRED. Total cost of the order
+ *         coretotal:         REQUIRED. Core total of the order
+ *         delcost:           Optional. Cost incurred to deliver the items
+ *         tax:               Optional. Amount of sales tax applicable to the order
+ *         total_fet:         Optional. Amount of Federal excise tax applicable to the order
+ *         totalpromosavings: Optional. Total promotional savings of the order
+ *         wonumber:          Optional. Work order number
+ */
+
+{
+    "transaction_type":"orderstatus",
+    "transaction_id":121233334324,
+    "header":{
+        "account":"99999",
+        "pwd":null,
+        "type":"open",
+        "branch":"1",
+        "reqrecs":15,
+        "errcode":"success",
+        "errmsg":"success",
+        "orderno":null,
+        "invoice":null,
+        "ponumber":null,
+        "routing":{
+            "supplier":"12345B6FBAA641234593ED1839212345",
+            "rid":"4124007",
+            "seller_id":null,
+            "buyer_id":null,
+            "client_id":null
+        }
+    },
+    "orderheaders":[
+        {
+            "status":"ordered",
+            "lineitems":3,
+            "branch":"1",
+            "orderno":"M9768709",
+            "invoice":null,
+            "ponumber":null,
+            "dateentered":"20100415",
+            "dateinvoiced":"20100417",
+            "timeentered":"17:34:59 UTC",
+            "timeinvoiced":"14:30:10 UTC",
+            "shipmethod":null,
+            "shipadd1":null,
+            "shipadd2":null,
+            "shipadd3":null,
+            "shipadd4":null,
+            "terms":null,
+            "type":null,
+            "total":59.98,
+            "coretotal":0.00,
+            "delcost":null,
+            "tax":null,
+            "total_fet":null,
+            "totalpromosavings":null,
+            "wonumber":null
+        },
+        {
+            "status":"ordered",
+            "lineitems":1,
+            "branch":"1",
+            "orderno":"M2099234",
+            "invoice":null,
+            "ponumber":null,
+            "dateentered":"20100415",
+            "dateinvoiced":"20100417",
+            "timeentered":"17:34:59 UTC",
+            "timeinvoiced":"14:30:10 UTC",
+            "shipmethod":null,
+            "shipadd1":null,
+            "shipadd2":null,
+            "shipadd3":null,
+            "shipadd4":null,
+            "terms":null,
+            "type":null,
+            "total":14.54,
+            "coretotal":0.00,
+            "delcost":null,
+            "tax":null,
+            "total_fet":null,
+            "totalpromosavings":null,
+            "wonumber":null
+        },
+        {
+            "status":"shipped",
+            "lineitems":2,
+            "branch":"1",
+            "orderno":"M2365851",
+            "invoice":null,
+            "ponumber":null,
+            "dateentered":"20100415",
+            "dateinvoiced":"20100417",
+            "timeentered":"17:34:59 UTC",
+            "timeinvoiced":"14:30:10 UTC",
+            "shipmethod":"UPSGRD",
+            "shipadd1":null,
+            "shipadd2":null,
+            "shipadd3":null,
+            "shipadd4":null,
+            "terms":null,
+            "type":null,
+            "total":59.98,
+            "coretotal":0.00,
+            "delcost":null,
+            "tax":null,
+            "total_fet":null,
+            "totalpromosavings":null,
+            "wonumber":null
+        }
+    ]
+}
